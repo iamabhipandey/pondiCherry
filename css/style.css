@@ -566,6 +566,7 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     color: black;
+    size: 0.95rem;
 }
 
 @media (max-width: 768px) {
@@ -723,4 +724,67 @@ body {
     height: 3em;
     /* Approximate height for 2 lines */
     line-height: 1.3;
+}
+
+/* RESPONSIVE LANDING SLIDER ADJUSTMENTS */
+@media (max-width: 991px) {
+    .cinematic-slider {
+        margin-top: 70px;
+    }
+
+    .carousel-item {
+        min-height: 50vh;
+        /* Reduced from 60vh */
+    }
+
+    .slider-image-container {
+        height: 50vh;
+        /* Reduced from 60vh */
+        width: 100%;
+    }
+
+    .main-img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover !important;
+        object-position: center top;
+        filter: drop-shadow(none);
+        /* Remove shadow on mobile for cleaner look */
+    }
+
+    .slider-content {
+        padding-left: 20px !important;
+        padding-right: 20px;
+        padding-bottom: 30px;
+        justify-content: flex-end !important;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
+    }
+
+    .slider-heading {
+        font-size: 2.5rem;
+        /* Smaller heading */
+        margin-bottom: 1rem !important;
+    }
+
+    .slider-btn {
+        padding: 10px 30px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-item {
+        min-height: 45vh;
+        /* Reduced from 70vh to 45vh */
+    }
+
+    .slider-image-container {
+        height: 45vh;
+        /* Reduced from 70vh to 45vh */
+    }
+
+    .slider-heading {
+        font-size: 1.8rem;
+        /* Even smaller for mobile */
+    }
 }
