@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initApp();
 });
 
+let currentLang = localStorage.getItem('site_lang') || 'en';
+
 async function initApp() {
     try {
         await Promise.all([
@@ -10,6 +12,10 @@ async function initApp() {
             loadComponent('landing', 'main-content'),
             loadComponent('footer', 'footer-container')
         ]);
+
+        // Apply translations after loading components
+        translatePage();
+        updateLanguageSelector();
 
         // Hide Loader and Show App
         setTimeout(() => {
@@ -45,6 +51,52 @@ async function loadComponent(name, containerId) {
     } catch (error) {
         console.error(error);
         container.innerHTML = `<div class="alert alert-danger">Error loading ${name}</div>`;
+    }
+}
+
+// Translation Functions
+window.changeLanguage = function (lang) {
+    currentLang = lang;
+    localStorage.setItem('site_lang', lang);
+    translatePage();
+    updateLanguageSelector();
+}
+
+function translatePage() {
+    const t = translations[currentLang];
+    if (!t) return;
+
+    // Translate Text Content
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) {
+            el.innerText = t[key];
+        }
+    });
+
+    // Translate Placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (t[key]) {
+            el.placeholder = t[key];
+        }
+    });
+
+    // Translate Alt Text
+    // Not implemented yet but could be useful for images
+}
+
+function updateLanguageSelector() {
+    const langDropdown = document.getElementById('langDropdown');
+    if (langDropdown) {
+        const langMap = {
+            'en': 'en',
+            'fr': 'fr',
+            'ko': 'ko',
+            'ja': 'ja'
+        };
+        // Update the button text to show current language code or full name
+        langDropdown.innerText = langMap[currentLang];
     }
 }
 

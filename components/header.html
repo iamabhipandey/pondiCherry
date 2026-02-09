@@ -1,185 +1,308 @@
-<header class="navbar navbar-expand-lg fixed-top glassmorphism-header">
+<nav class="navbar navbar-expand-lg fixed-top glassmorphism-header">
     <div class="container-fluid">
-        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
-            <img src="logo.jpeg" alt="Brand Logo" style="height: 75px; width: auto; object-fit: contain;">
+        <!-- Brand Logo -->
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2 me-auto" href="#">
+            <img src="logo.jpeg" alt="Brand Logo" style="height: 70px; width: auto; object-fit: contain;">
         </a>
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 
+        <!-- Action Bar (Always Visible on Screen) -->
+        <div class="d-flex align-items-center order-lg-last ms-auto ms-lg-0 gap-3 gap-lg-4">
+            <!-- Wishlist (Desktop Only) -->
+            <a href="#" class="text-dark action-icon d-none d-lg-block" data-bs-toggle="tooltip" title="Wishlist">
+                <i class="bi bi-heart fs-4"></i>
+            </a>
+
+            <!-- Cart (Desktop Only) -->
+            <a href="#" class="text-dark action-icon d-none d-lg-block" data-bs-toggle="tooltip" title="Cart">
+                <i class="bi bi-bag fs-4"></i>
+            </a>
+
+            <!-- User (Desktop Only) -->
+            <a href="#" class="text-dark action-icon d-none d-lg-block" data-bs-toggle="tooltip" title="Account">
+                <i class="bi bi-person-circle fs-3"></i>
+            </a>
+
+            <!-- Search Trigger (Permanent) -->
+            <a href="#" class="text-dark action-icon search-trigger" id="searchTrigger" title="Search">
+                <i class="bi bi-search fs-4"></i>
+            </a>
+
+            <!-- Language Dropdown (Permanent) -->
+            <div class="dropdown">
+                <a href="#"
+                    class="text-dark fw-bold text-decoration-none fs-4 font-serif ms-1 dropdown-toggle remove-after"
+                    id="langDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="font-family: serif;">
+                    en
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-4 p-2"
+                    aria-labelledby="langDropdown" style="min-width: 120px; right: 0; left: auto; position: absolute;">
+                    <li><a class="dropdown-item rounded-3 fw-medium" href="#" onclick="changeLanguage('en')">English</a>
+                    </li>
+                    <li><a class="dropdown-item rounded-3 fw-medium" href="#"
+                            onclick="changeLanguage('fr')">Français</a></li>
+                    <li><a class="dropdown-item rounded-3 fw-medium" href="#" onclick="changeLanguage('ko')">Korean</a>
+                    </li>
+                    <li><a class="dropdown-item rounded-3 fw-medium" href="#"
+                            onclick="changeLanguage('ja')">Japanese</a></li>
+                </ul>
+            </div>
+
+            <!-- Mobile Toggler -->
+            <button class="navbar-toggler border-0 shadow-none ms-2" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
+        <!-- Desktop Navigation (Hidden on Mobile) -->
+        <div class="collapse navbar-collapse d-none d-lg-block" id="desktopNav">
             <ul class="navbar-nav align-items-center gap-4">
-                <!-- Soldes Dropdown (Mega Menu) -->
+                <!-- Soldes Dropdown (Desktop) -->
                 <li class="nav-item dropdown position-static">
-                    <a class="nav-link dropdown-toggle active-gold" href="#" id="salesDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Sale
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-mega fade-in-up" aria-labelledby="salesDropdown">
-                        <div class="row g-4">
-                            <div class="col-lg-4">
-                                <h6 class="mega-menu-title text-primary">Home</h6>
-                                <a class="mega-menu-link" href="#">Table Linens</a>
-                                <a class="mega-menu-link" href="#">Quilted Bedspreads</a>
-                                <a class="mega-menu-link" href="#">Cushions</a>
-                            </div>
-                            <div class="col-lg-4">
-                                <h6 class="mega-menu-title text-primary">Ready-to-Wear</h6>
-                                <a class="mega-menu-link" href="#">Dresses</a>
-                                <a class="mega-menu-link" href="#">Tops & Shirts</a>
-                                <a class="mega-menu-link" href="#">Pants</a>
-                            </div>
-                            <div class="col-lg-4">
-                                <h6 class="mega-menu-title text-primary">Accessories</h6>
-                                <a class="mega-menu-link" href="#">Bags</a>
-                                <a class="mega-menu-link" href="#">Jewelry</a>
-                                <a class="mega-menu-link" href="#">Scarves</a>
+                    <a class="nav-link dropdown-toggle active-gold" href="#" id="salesDropdownDesk" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" data-i18n="nav_sale">Sale</a>
+                    <div class="dropdown-menu dropdown-menu-mega fade-in-up" aria-labelledby="salesDropdownDesk">
+                        <div class="container-fluid">
+                            <div class="row g-4">
+                                <div class="col-lg-4">
+                                    <h6 class="mega-menu-title text-primary" data-i18n="nav_home">Home</h6>
+                                    <a class="mega-menu-link" href="#" data-i18n="menu_table_linens">Table Linens</a>
+                                    <a class="mega-menu-link" href="#" data-i18n="nav_quilted_bedspreads">Quilted
+                                        Bedspreads</a>
+                                    <a class="mega-menu-link" href="#" data-i18n="menu_cushions">Cushions</a>
+                                </div>
+                                <div class="col-lg-4">
+                                    <h6 class="mega-menu-title text-primary" data-i18n="nav_ready_to_wear">Ready-to-Wear
+                                    </h6>
+                                    <a class="mega-menu-link" href="#" data-i18n="menu_dresses">Dresses</a>
+                                    <a class="mega-menu-link" href="#" data-i18n="menu_tops_shirts">Tops & Shirts</a>
+                                    <a class="mega-menu-link" href="#" data-i18n="menu_pants">Pants</a>
+                                </div>
+                                <div class="col-lg-4">
+                                    <h6 class="mega-menu-title text-primary" data-i18n="nav_accessories">Accessories
+                                    </h6>
+                                    <a class="mega-menu-link" href="#" data-i18n="menu_bags">Bags</a>
+                                    <a class="mega-menu-link" href="#" data-i18n="menu_jewelry">Jewelry</a>
+                                    <a class="mega-menu-link" href="#" data-i18n="menu_scarves">Scarves</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </li>
 
-                <!-- E-Shop Dropdown (Mega Menu) -->
+                <!-- E-Shop Dropdown (Desktop) -->
                 <li class="nav-item dropdown position-static">
-                    <a class="nav-link dropdown-toggle active-gold fw-bold" href="#" id="eshopDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        E-shop
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-mega fade-in-up" aria-labelledby="eshopDropdown">
+                    <a class="nav-link dropdown-toggle active-gold fw-bold" href="#" id="eshopDropdownDesk"
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="nav_eshop">E-shop</a>
+                    <div class="dropdown-menu dropdown-menu-mega fade-in-up" aria-labelledby="eshopDropdownDesk">
                         <div class="row">
-                            <!-- Column 1: Simrane x Rouje -->
                             <div class="col">
-                                <h6 class="mega-menu-title text-primary">Simrane x Rouje</h6>
-                                <a class="mega-menu-link" href="#">Kimono Taj</a>
-                                <a class="mega-menu-link" href="#">Home</a>
-                                <a class="mega-menu-link" href="#">Accessories</a>
+                                <h6 class="mega-menu-title text-primary" data-i18n="nav_simrane_rouje">Simrane x Rouje
+                                </h6>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_kimono_taj">Kimono Taj</a>
+                                <a class="mega-menu-link" href="#" data-i18n="nav_home">Home</a>
+                                <a class="mega-menu-link" href="#" data-i18n="nav_accessories">Accessories</a>
                             </div>
-
-                            <!-- Column 2: Maison -->
                             <div class="col">
-                                <h6 class="mega-menu-title text-primary">Home</h6>
-                                <a class="mega-menu-link" href="#">Tablecloths</a>
-                                <a class="mega-menu-link" href="#">Napkins</a>
-                                <a class="mega-menu-link" href="#">Placemats</a>
-                                <a class="mega-menu-link" href="#">Table Runners</a>
-                                <a class="mega-menu-link" href="#">Curtains</a>
-                                <a class="mega-menu-link" href="#">Quilted Bedspreads</a>
-                                <a class="mega-menu-link" href="#">Cushions</a>
-                                <a class="mega-menu-link" href="#">Cushion Inserts</a>
+                                <h6 class="mega-menu-title text-primary" data-i18n="nav_home">Home</h6>
+                                <a class="mega-menu-link" href="#" data-i18n="nav_tablecloths">Tablecloths</a>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_napkins">Napkins</a>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_placemats">Placemats</a>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_table_runners">Table Runners</a>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_curtains">Curtains</a>
+                                <a class="mega-menu-link" href="#" data-i18n="nav_quilted_bedspreads">Quilted
+                                    Bedspreads</a>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_cushions">Cushions</a>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_cushion_inserts">Cushion Inserts</a>
                             </div>
-
-                            <!-- Column 3: Vêtements -->
                             <div class="col">
-                                <h6 class="mega-menu-title text-primary">Clothing</h6>
-                                <a class="mega-menu-link" href="#">Jackets</a>
-                                <a class="mega-menu-link" href="#">Tops</a>
-                                <a class="mega-menu-link" href="#">Shirts</a>
-                                <a class="mega-menu-link" href="#">Kimonos</a>
-                                <a class="mega-menu-link" href="#">Tunics</a>
-                                <a class="mega-menu-link" href="#">Dresses</a>
-                                <a class="mega-menu-link" href="#">Kaftans</a>
-                                <a class="mega-menu-link" href="#">Pajamas</a>
-                                <a class="mega-menu-link" href="#">Skirts</a>
-                                <a class="mega-menu-link" href="#">Pants</a>
+                                <h6 class="mega-menu-title text-primary" data-i18n="nav_clothing">Clothing</h6>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_jackets">Jackets</a>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_tops">Tops</a>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_shirts">Shirts</a>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_kimonos">Kimonos</a>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_tunics">Tunics</a>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_dresses">Dresses</a>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_kaftans">Kaftans</a>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_pajamas">Pajamas</a>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_skirts">Skirts</a>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_pants">Pants</a>
                             </div>
-
-                            <!-- Column 4: Accessoires -->
                             <div class="col">
-                                <h6 class="mega-menu-title text-primary">Accessories</h6>
-                                <a class="mega-menu-link" href="#">Scarves & Shawls</a>
-                                <a class="mega-menu-link" href="#">Pareos</a>
-                                <a class="mega-menu-link" href="#">Pouches</a>
-                                <a class="mega-menu-link" href="#">Toiletry Bags</a>
-                                <a class="mega-menu-link" href="#">Bags</a>
-                                <a class="mega-menu-link" href="#">Baskets</a>
+                                <h6 class="mega-menu-title text-primary" data-i18n="nav_accessories">Accessories</h6>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_scarves_shawls">Scarves & Shawls</a>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_pareos">Pareos</a>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_pouches">Pouches</a>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_toiletry_bags">Toiletry Bags</a>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_bags">Bags</a>
+                                <a class="mega-menu-link" href="#" data-i18n="menu_baskets">Baskets</a>
                             </div>
-
-                            <!-- Column 5: Carte Cadeau -->
                             <div class="col">
-                                <h6 class="mega-menu-title text-primary mb-0">Gift Card</h6>
+                                <h6 class="mega-menu-title text-primary mb-0" data-i18n="nav_gift_card">Gift Card</h6>
                             </div>
                         </div>
                     </div>
                 </li>
 
-
-                <!-- Notre Histoire Dropdown -->
+                <!-- Our Story Dropdown (Desktop) -->
                 <li class="nav-item dropdown position-static">
-                    <a class="nav-link dropdown-toggle active-gold fw-bold" href="#" id="historyDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Our Story
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-mega fade-in-up" aria-labelledby="historyDropdown">
+                    <a class="nav-link dropdown-toggle active-gold fw-bold" href="#" id="historyDropdownDesk"
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="nav_our_story">Our
+                        Story</a>
+                    <div class="dropdown-menu dropdown-menu-mega fade-in-up" aria-labelledby="historyDropdownDesk">
                         <div class="row">
                             <div class="col-lg-4">
-                                <a class="mega-menu-link fs-6 fw-bold text-primary mb-2 d-block" href="#">Our Story</a>
-                                <a class="mega-menu-link fs-6 fw-bold text-primary mb-2 d-block" href="#">Our Stores</a>
-                                <a class="mega-menu-link fs-6 fw-bold text-primary mb-2 d-block" href="#">Polavaram,
-                                    Land of Kalamkari</a>
+                                <a class="mega-menu-link fs-6 fw-bold text-primary mb-2 d-block" href="#"
+                                    data-i18n="nav_our_story">Our Story</a>
+                                <a class="mega-menu-link fs-6 fw-bold text-primary mb-2 d-block" href="#"
+                                    data-i18n="nav_our_stores">Our Stores</a>
+                                <a class="mega-menu-link fs-6 fw-bold text-primary mb-2 d-block" href="#"
+                                    data-i18n="nav_polavaram">Polavaram, Land of Kalamkari</a>
                             </div>
                         </div>
                     </div>
                 </li>
             </ul>
+        </div>
+    </div>
+</nav>
 
-            <div class="d-flex align-items-center ms-lg-auto gap-3 gap-lg-4 mt-3 mt-lg-0 mobile-action-bar">
-                <!-- Wishlist -->
-                <a href="#" class="text-dark action-icon" data-bs-toggle="tooltip" title="Wishlist">
-                    <i class="bi bi-heart fs-4"></i>
-                </a>
-
-                <!-- Cart -->
-                <a href="#" class="text-dark action-icon" data-bs-toggle="tooltip" title="Cart">
-                    <i class="bi bi-bag fs-4"></i>
-                </a>
-
-                <!-- User -->
-                <a href="#" class="text-dark action-icon" data-bs-toggle="tooltip" title="Account">
-                    <i class="bi bi-person-circle fs-3"></i>
-                </a>
-
-                <!-- Search Trigger -->
-                <a href="#" class="text-dark action-icon search-trigger" id="searchTrigger" title="Search">
-                    <i class="bi bi-search fs-4"></i>
-                </a>
-
-                <!-- Language Dropdown -->
-                <div class="dropdown">
-                    <a href="#"
-                        class="text-dark fw-bold text-decoration-none fs-4 font-serif ms-1 dropdown-toggle remove-after"
-                        id="langDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="font-family: serif;">
-                        en
+<!-- Offcanvas Mobile Menu (Sidebar style) - OUTSIDE NAV -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title font-serif fw-bold" id="mobileMenuLabel">Menu</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="navbar-nav mx-auto gap-2">
+            <!-- Mobile Only Icons inside Action Row -->
+            <li class="nav-item d-lg-none border-bottom pb-3 mb-3">
+                <div class="d-flex gap-4 justify-content-start px-2">
+                    <a href="#" class="text-dark action-icon d-flex align-items-center gap-2" title="Wishlist">
+                        <i class="bi bi-heart fs-4"></i> <span class="fs-6">Wishlist</span>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-4 p-2"
-                        aria-labelledby="langDropdown" style="min-width: 120px;">
-                        <li><a class="dropdown-item rounded-3 fw-medium" href="#">English</a></li>
-                        <li><a class="dropdown-item rounded-3 fw-medium" href="#">Korean</a></li>
-                        <li><a class="dropdown-item rounded-3 fw-medium" href="#">Japanese</a></li>
-                    </ul>
+                    <a href="#" class="text-dark action-icon d-flex align-items-center gap-2" title="Cart">
+                        <i class="bi bi-bag fs-4"></i> <span class="fs-6">Cart</span>
+                    </a>
+                    <a href="#" class="text-dark action-icon d-flex align-items-center gap-2" title="Account">
+                        <i class="bi bi-person-circle fs-3"></i> <span class="fs-6">Account</span>
+                    </a>
                 </div>
-            </div>
-        </div>
-    </div>
+            </li>
 
-    <!-- Hidden Search Bar Overlay -->
-    <div id="searchOverlay" class="search-overlay d-none align-items-center justify-content-center">
-        <div class="container position-relative">
-            <button class="btn-close position-absolute top-0 end-0 m-3 d-none d-md-block" id="closeSearchBtn"></button>
-            <div class="row justify-content-center w-100">
-                <div class="col-lg-8">
-                    <div class="input-group input-group-lg border-bottom border-dark">
-                        <span class="input-group-text bg-transparent border-0 ps-0"><i
-                                class="bi bi-search fs-3"></i></span>
-                        <input type="text" class="form-control bg-transparent border-0 fs-3 shadow-none text-center"
-                            placeholder="Search..." aria-label="Search" id="searchInput">
-                        <button class="btn btn-dark rounded-pill px-4 ms-2" type="button"
-                            id="searchSubmitBtn">OK</button>
-                        <button class="btn btn-outline-secondary rounded-pill px-3 ms-2 d-md-none" type="button"
-                            id="closeSearchBtnMobile">X</button>
-                    </div>
+
+            <!-- Sale Mobile Menu (Full Content) -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle fs-5 fw-bold" href="#" id="mobSales" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false" data-i18n="nav_sale">Sale</a>
+                <div class="dropdown-menu dropdown-menu-mega px-2" aria-labelledby="mobSales">
+                    <!-- Home -->
+                    <h6 class="mega-menu-title text-primary mt-2" data-i18n="nav_home">Home</h6>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_table_linens">Table Linens</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="nav_quilted_bedspreads">Quilted
+                        Bedspreads</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_cushions">Cushions</a>
+
+                    <!-- Ready to Wear -->
+                    <h6 class="mega-menu-title text-primary mt-3" data-i18n="nav_ready_to_wear">Ready-to-Wear</h6>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_dresses">Dresses</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_tops_shirts">Tops & Shirts</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_pants">Pants</a>
+
+                    <!-- Accessories -->
+                    <h6 class="mega-menu-title text-primary mt-3" data-i18n="nav_accessories">Accessories</h6>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_bags">Bags</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_jewelry">Jewelry</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_scarves">Scarves</a>
+                </div>
+            </li>
+
+            <!-- E-Shop Mobile Menu (Full Content) -->
+            <li class="nav-item dropdown mt-2">
+                <a class="nav-link dropdown-toggle fs-5 fw-bold" href="#" id="mobEshop" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false" data-i18n="nav_eshop">E-shop</a>
+                <div class="dropdown-menu dropdown-menu-mega px-2" aria-labelledby="mobEshop">
+                    <!-- Simrane x Rouje -->
+                    <h6 class="mega-menu-title text-primary mt-2" data-i18n="nav_simrane_rouje">Simrane x Rouje</h6>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_kimono_taj">Kimono Taj</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="nav_home">Home</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="nav_accessories">Accessories</a>
+
+                    <!-- Maison -->
+                    <h6 class="mega-menu-title text-primary mt-3" data-i18n="nav_home">Home</h6>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="nav_tablecloths">Tablecloths</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_napkins">Napkins</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_placemats">Placemats</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_table_runners">Table Runners</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_curtains">Curtains</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="nav_quilted_bedspreads">Quilted
+                        Bedspreads</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_cushions">Cushions</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_cushion_inserts">Cushion Inserts</a>
+
+                    <!-- Clothing -->
+                    <h6 class="mega-menu-title text-primary mt-3" data-i18n="nav_clothing">Clothing</h6>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_jackets">Jackets</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_tops">Tops</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_shirts">Shirts</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_kimonos">Kimonos</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_tunics">Tunics</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_dresses">Dresses</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_kaftans">Kaftans</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_pajamas">Pajamas</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_skirts">Skirts</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_pants">Pants</a>
+
+                    <!-- Accessories -->
+                    <h6 class="mega-menu-title text-primary mt-3" data-i18n="nav_accessories">Accessories</h6>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_scarves_shawls">Scarves & Shawls</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_pareos">Pareos</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_pouches">Pouches</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_toiletry_bags">Toiletry Bags</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_bags">Bags</a>
+                    <a class="mega-menu-link d-block py-1" href="#" data-i18n="menu_baskets">Baskets</a>
+
+                    <!-- Gift Card -->
+                    <h6 class="mega-menu-title text-primary mt-3 mb-0" data-i18n="nav_gift_card">Gift Card</h6>
+                </div>
+            </li>
+
+
+            <!-- Our Story Mobile Menu (Full Content) -->
+            <li class="nav-item dropdown mt-2">
+                <a class="nav-link dropdown-toggle fs-5 fw-bold" href="#" id="mobHistory" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false" data-i18n="nav_our_story">Our Story</a>
+                <div class="dropdown-menu dropdown-menu-mega px-2" aria-labelledby="mobHistory">
+                    <a class="mega-menu-link d-block py-2 fw-bold text-primary" href="#" data-i18n="nav_our_story">Our
+                        Story</a>
+                    <a class="mega-menu-link d-block py-2 fw-bold text-primary" href="#" data-i18n="nav_our_stores">Our
+                        Stores</a>
+                    <a class="mega-menu-link d-block py-2 fw-bold text-primary" href="#"
+                        data-i18n="nav_polavaram">Polavaram, Land of Kalamkari</a>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+<!-- Hidden Search Bar Overlay (Siblings) -->
+<div id="searchOverlay" class="search-overlay d-none align-items-center justify-content-center">
+    <!-- ... same search content ... -->
+    <div class="container position-relative">
+        <button class="btn-close position-absolute top-0 end-0 m-3 d-none d-md-block" id="closeSearchBtn"></button>
+        <div class="row justify-content-center w-100">
+            <div class="col-lg-8">
+                <div class="input-group input-group-lg border-bottom border-dark">
+                    <span class="input-group-text bg-transparent border-0 ps-0"><i class="bi bi-search fs-3"></i></span>
+                    <input type="text" class="form-control bg-transparent border-0 fs-3 shadow-none text-center"
+                        placeholder="Search..." aria-label="Search" id="searchInput"
+                        data-i18n-placeholder="search_placeholder">
+                    <button class="btn btn-dark rounded-pill px-4 ms-2" type="button" id="searchSubmitBtn">OK</button>
+                    <button class="btn btn-outline-secondary rounded-pill px-3 ms-2 d-md-none" type="button"
+                        id="closeSearchBtnMobile">X</button>
                 </div>
             </div>
         </div>
     </div>
-</header>
+</div>
